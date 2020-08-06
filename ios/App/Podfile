@@ -17,4 +17,5 @@ end
 target 'App' do
   capacitor_pods
   # Add your Pods here
+  pod 'CapacitorLoginFlow', :path => '../../node_modules/capacitor-login-flow'
 end

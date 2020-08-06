@@ -74,7 +74,18 @@ window.customElements.define('capacitor-welcome', class extends HTMLElement {
           This demo shows how to call Capacitor plugins. Say cheese!
         </p>
         <p>
-          <button class="button" id="take-photo">Take Photo</button>
+          <button class="button" id="delegate-to-full-native">Set RootViewController to Native</button>
+        </p>
+      <p>
+        <b>This feature only supports when your plugin in the same source code of app!</b>
+        <i>UIApplication.shared.windows.first!.rootViewController = $YourRootViewController</i>
+      </p>
+        <p>
+          <button class="button" id="invoke-native-ui">Present Native UIViewController</button>
+        </p>
+        <p>
+          <b>When we use plugin from another repository. We can not set the rootViewController.</b>
+          <i>We only access to get propery: self.bridge.viewController (can only: push, present, dismiss)</i>
         </p>
         <p>
           <img id="image" style="max-width: 100%">
@@ -87,32 +98,23 @@ window.customElements.define('capacitor-welcome', class extends HTMLElement {
   connectedCallback() {
     const self = this;
 
-    self.shadowRoot.querySelector('#take-photo').addEventListener('click', async function(e) {
-      const { Camera } = Capacitor.Plugins;
-
-      //import { Plugins } from "@capacitor/core"
+    self.shadowRoot.querySelector('#delegate-to-full-native').addEventListener('click', async function(e) {
       const { MyPlugin } = Capacitor.Plugins
       console.log('Capacitor')
       console.log(Capacitor.Plugins)
 
-      const result = await MyPlugin.echo({ value: "Hello World!" })
+      const result = await MyPlugin.echo({ value: "Replace by Native's RootView" })
       console.log(result.value)
-
-      // try {
-      //   const photo = await Camera.getPhoto({
-      //     resultType: "uri"
-      //   });
-
-      //   const image = self.shadowRoot.querySelector('#image');
-      //   if (!image) {
-      //     return;
-      //   }
-        
-      //   image.src = photo.webPath;
-      // } catch (e) {
-      //   console.warn('User cancelled', e);
-      // }
     })
+    self.shadowRoot.querySelector('#invoke-native-ui').addEventListener('click', async function(e) {
+      console.log('the button was clicked')
+      const { LoginPlugin } = Capacitor.Plugins;
+      console.log('LoginPlugin = ' + LoginPlugin)
+     console.log(Capacitor.Plugins)
+      
+      const result = await LoginPlugin.showLogin({ value: "Delegate to Native Login Flow!" })
+      console.log(result.value)
+  })
   }
 });
 

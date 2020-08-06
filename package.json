@@ -17,6 +17,7 @@
     "@capacitor/cli": "^2.4.0",
     "@capacitor/core": "^2.4.0",
     "@capacitor/ios": "2.4.0",
-    "capacitor-myplugin": "git+https://github.com/TuananhSteven/DemoCapacitor.git"
+    "capacitor-myplugin": "git+https://github.com/TuananhSteven/DemoCapacitor.git",
+    "capacitor-login-flow": "git+https://github.com/pycohub/CapacitorPluginPOC.git"
   }
 }
