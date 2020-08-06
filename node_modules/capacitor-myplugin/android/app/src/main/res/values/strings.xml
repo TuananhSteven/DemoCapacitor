@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">DemoCapacitor</string>
+    <string name="title_activity_main">DemoCapacitor</string>
+    <string name="package_name">com.anhngo.democapacitor</string>
+    <string name="custom_url_scheme">com.anhngo.democapacitor</string>
+</resources>

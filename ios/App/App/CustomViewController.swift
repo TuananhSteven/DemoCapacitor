@@ -6,13 +6,21 @@
 //
 
 import UIKit
+import Capacitor
 
 class CustomViewController: UIViewController {
 
+    var cancelHandler: (() -> Void)?
+    var count = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    @IBAction func button2(_ sender: Any) {
+        self.navigationController?.pushViewController(CAPBridgeViewController(), animated: true)
+        
     }
     
 
@@ -25,5 +33,15 @@ class CustomViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if count > 0 {
+            cancelHandler!()
+        }
+        count = count + 1
+        
+    }
+    
 
 }
