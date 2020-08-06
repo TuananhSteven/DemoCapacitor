@@ -90,20 +90,28 @@ window.customElements.define('capacitor-welcome', class extends HTMLElement {
     self.shadowRoot.querySelector('#take-photo').addEventListener('click', async function(e) {
       const { Camera } = Capacitor.Plugins;
 
-      try {
-        const photo = await Camera.getPhoto({
-          resultType: "uri"
-        });
+      //import { Plugins } from "@capacitor/core"
+      const { MyPlugin } = Capacitor.Plugins
+      console.log('Capacitor')
+      console.log(Capacitor.Plugins)
 
-        const image = self.shadowRoot.querySelector('#image');
-        if (!image) {
-          return;
-        }
+      const result = await MyPlugin.echo({ value: "Hello World!" })
+      console.log(result.value)
+
+      // try {
+      //   const photo = await Camera.getPhoto({
+      //     resultType: "uri"
+      //   });
+
+      //   const image = self.shadowRoot.querySelector('#image');
+      //   if (!image) {
+      //     return;
+      //   }
         
-        image.src = photo.webPath;
-      } catch (e) {
-        console.warn('User cancelled', e);
-      }
+      //   image.src = photo.webPath;
+      // } catch (e) {
+      //   console.warn('User cancelled', e);
+      // }
     })
   }
 });
